@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ButtonToolbar, Button } from 'react-bootstrap';
-import { fetchGames } from '../actions';
+import { fetchGames, selectGame } from '../actions';
+
 
 
 class GameList extends Component {
@@ -14,26 +15,25 @@ class GameList extends Component {
     // axios.get('https://zyqh9s9xt4.execute-api.eu-west-1.amazonaws.com/prod/battle',config)
     //   .then(response => this.setState({games:response.data.battles}));
     this.props.fetchGames();
-
   }
   
-  clickMe() {
-    alert('Game is loading...');
-  }
+  // selectGame(gameId) {
+  //   this.props.selectGame(gameId);
+  // }
 
   render(){
     let { games } = this.props;
-    console.log(games);
     
     return(
       <div className='gameList-panel'>
         <ButtonToolbar>
-          <Button bsStyle="primary" bsSize="large" onClick={this.clickMe}>Start New Game!</Button>
+          <Button bsStyle="primary" bsSize="large">Start New Game!</Button>
         </ButtonToolbar>
         <ul>
           <h3>Previous games: </h3>
           {games.map((game,index)=>{
-             return(<li key={index}>{game.battleId}</li>)
+            return(
+              <li key={index}><a onClick={() => this.props.selectGame(game.battleId)}>{game.battleId}</a></li>)
           })}
         </ul>
       </div>
@@ -47,4 +47,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchGames } )(GameList);
+export default connect(mapStateToProps, { fetchGames, selectGame } )(GameList);
