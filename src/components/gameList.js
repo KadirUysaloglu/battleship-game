@@ -7,9 +7,6 @@ import { fetchGames, selectGame } from '../actions';
 
 
 class GameList extends Component {
-  constructor(props){
-    super(props);
-  }
   componentDidMount() {
     // var config = {headers: {'x-api-key': 'x79qTUx0QO5IzR8zsiFvt5a5xOy5HikV2QBLjy0D'}};
     // axios.get('https://zyqh9s9xt4.execute-api.eu-west-1.amazonaws.com/prod/battle',config)
@@ -23,6 +20,7 @@ class GameList extends Component {
 
   render(){
     let { games } = this.props;
+    console.log(games);
     
     return(
       <div className='gameList-panel'>
