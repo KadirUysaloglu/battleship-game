@@ -10,15 +10,15 @@ class GameBoard extends Component {
 
   render(){
 
-    const { games } = this.props;
-    console.log(games);
+    const { selectedGame } = this.props;
+    console.log(selectedGame);
 
     return(
       <div className='gameBoard-panel'>
         <h1>Game board will appear here!</h1>
-          {games.map((game, i) => {
+        {selectedGame.map((game, i) => {
             return (
-              <li key={i}>{game.battleId}</li>
+              <div key={i}>{game.data.battle.battlefield}</div>
             );
           })}
       </div>
@@ -27,7 +27,7 @@ class GameBoard extends Component {
 }
 
 function mapStateToProps(state) {
-  return { games: state.games};
+  return { selectedGame: state.selectedGame};
 }
 
 export default connect(mapStateToProps)(GameBoard);
