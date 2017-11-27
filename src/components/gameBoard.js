@@ -11,11 +11,16 @@ class GameBoard extends Component {
   render(){
 
     const { selectedGame } = this.props;
-    console.log(selectedGame);
-
+    //console.log(selectedGame);
+    let message;
+    if (!selectedGame) {
+      message = <h2>Game is loading...</h2>;
+    }
+   
     return(
       <div className='gameBoard-panel'>
-        <h1>Game board will appear here!</h1>
+        {message}
+        <h3>Game board will appear here!</h3>
         {selectedGame.map((game, i) => {
             return (
               <div key={i}>{game.data.battle.battlefield}</div>
