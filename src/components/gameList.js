@@ -13,7 +13,7 @@ class GameList extends Component {
     //   .then(response => this.setState({games:response.data.battles}));
     this.props.fetchGames();
   }
-  
+
   // selectGame(gameId) {
   //   this.props.selectGame(gameId);
   // }
@@ -21,7 +21,7 @@ class GameList extends Component {
   render(){
     let { games } = this.props;
     console.log(games);
-    
+
     return(
       <div className='gameList-panel'>
         <ButtonToolbar>
@@ -29,7 +29,7 @@ class GameList extends Component {
         </ButtonToolbar>
         <ul>
           <h3>Previous games: </h3>
-          {games.map((game,index)=>{
+          {games.allGames.map((game,index)=>{
             return(
               <li key={index}><a onClick={() => this.props.selectGame(game.battleId)}>{game.battleId}</a></li>)
           })}

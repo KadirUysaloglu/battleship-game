@@ -1,17 +1,18 @@
-import { FETCH_GAMES } from '../actions';
+import { FETCH_GAMES,DELETE_GAME } from '../actions';
 
-export default function(state =[], action) {
+const initialState={
+  allGames:[]
+}
+export default function(state =initialState, action) {
     switch(action.type) {
     case FETCH_GAMES:
-        //console.log(action.payload)
-        //console.log(action.payload.data.battles);
-        return [...state, ...action.payload.data.battles];
-    
-    // case SELECT_GAME:
-    //     const newState = state.filter(game => game.id !== action.payload.id);
-    //     //console.log(newState);
-    //     return [...newState, action.payload];
-        
+        return {...state, allGames:Object.assign([],action.payload.battles)};
+    case DELETE_GAME:
+        let allGames=Object.assign([],state.allGames);
+        let index=allGames.indexOf(action.payload);
+        allGames.splice(index,1);
+        return {...state, allGames:allGames}
+
     default:
         return state;
     }
