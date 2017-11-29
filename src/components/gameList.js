@@ -14,10 +14,6 @@ class GameList extends Component {
     this.props.fetchGames();
   }
 
-  // selectGame(gameId) {
-  //   this.props.selectGame(gameId);
-  // }
-
   render(){
     let { games } = this.props;
     console.log(games);
